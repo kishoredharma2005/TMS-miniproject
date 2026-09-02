@@ -1,0 +1,72 @@
+.hero-header {
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+  background: var(--glass-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle decorative glow in the hero */
+.hero-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  width: 50%;
+  height: 200%;
+  background: radial-gradient(circle, var(--accent-teal-glow) 0%, transparent 60%);
+  opacity: 0.3;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-breadcrumbs {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent-teal);
+  margin-bottom: var(--space-1);
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-breadcrumbs a {
+  color: var(--slate-500);
+  opacity: 0.7;
+}
+.hero-breadcrumbs a:hover {
+  opacity: 1;
+  color: var(--accent-teal);
+}
+
+.hero-breadcrumbs .separator {
+  margin: 0 8px;
+  color: var(--text-muted);
+  opacity: 0.4;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .hero-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3);
+  }
+}

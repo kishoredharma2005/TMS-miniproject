@@ -1,0 +1,29 @@
+/* Application Wrapper Layout for Dock Navigation */
+.app-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.main-content {
+  flex: 1;
+  /* Padding top to clear the 64px dock + 24px top spacing + some margin on desktop */
+  padding: 120px var(--space-4) var(--space-6) var(--space-4);
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .app-wrapper {
+    flex-direction: column;
+  }
+  .main-content {
+    /* Padding bottom to clear the 72px tab bar + safe area on mobile */
+    padding: var(--space-4) var(--space-3) 100px var(--space-3);
+  }
+}
