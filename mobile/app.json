@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "TMS Mobile",
+    "slug": "tms-mobile-app",
+    "scheme": "tmsmobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0F172A"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.tms.mobileapp",
+      "backgroundColor": "#0F172A",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "plugins": [
+      "expo-status-bar"
+    ]
+  }
+}

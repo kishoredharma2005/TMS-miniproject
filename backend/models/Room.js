@@ -10,12 +10,12 @@ const roomSchema = new mongoose.Schema(
     department: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Department',
-      required: true,
+      required: false,
     },
     programme: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Programme',
-      required: true,
+      required: false,
     },
     block: {
       type: mongoose.Schema.Types.ObjectId,

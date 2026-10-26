@@ -4,15 +4,17 @@ exports.createRoom = async (req, res) => {
   try {
     const { roomNumber, department, programme, block, floor, capacity, description } = req.body;
 
-    const room = new Room({
-      roomNumber,
-      department,
-      programme,
+    const roomData = {
+      roomNumber: roomNumber ? roomNumber.trim() : '',
       block,
       floor,
       capacity,
       description,
-    });
+    };
+    if (department) roomData.department = department;
+    if (programme) roomData.programme = programme;
+
+    const room = new Room(roomData);
 
     await room.save();
     res.status(201).json({ message: 'Room created successfully', room });
@@ -57,9 +59,19 @@ exports.getRoomById = async (req, res) => {
 exports.updateRoom = async (req, res) => {
   try {
     const { roomNumber, department, programme, block, floor, capacity, description } = req.body;
+    const updateData = {
+      roomNumber: roomNumber ? roomNumber.trim() : undefined,
+      block,
+      floor,
+      capacity,
+      description,
+    };
+    if (department !== undefined) updateData.department = department || null;
+    if (programme !== undefined) updateData.programme = programme || null;
+
     const room = await Room.findByIdAndUpdate(
       req.params.id,
-      { roomNumber, department, programme, block, floor, capacity, description },
+      updateData,
       { new: true, runValidators: true }
     );
     if (!room) {

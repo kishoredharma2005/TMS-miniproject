@@ -260,3 +260,21 @@ exports.generateReport = async (req, res) => {
     res.status(500).json({ message: 'Failed to generate report', error: error.message });
   }
 };
+
+// Get single complaint by ID
+exports.getComplaintById = async (req, res) => {
+  try {
+    const complaint = await Complaint.findById(req.params.id)
+      .populate({ path: 'createdBy', select: 'username email department', populate: { path: 'department', select: 'name' } })
+      .populate({ path: 'assignedTo', select: 'username email role department', populate: { path: 'department', select: 'name' } });
+
+    if (!complaint) {
+      return res.status(404).json({ message: 'Complaint not found' });
+    }
+
+    res.json(complaint);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch complaint details', error: error.message });
+  }
+};
+

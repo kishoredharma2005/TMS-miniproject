@@ -4,12 +4,14 @@ exports.createBlock = async (req, res) => {
   try {
     const { name, department, programme, description } = req.body;
 
-    const block = new Block({
-      name,
-      department,
-      programme,
+    const blockData = {
+      name: name ? name.trim() : '',
       description,
-    });
+    };
+    if (department) blockData.department = department;
+    if (programme) blockData.programme = programme;
+
+    const block = new Block(blockData);
 
     await block.save();
     res.status(201).json({ message: 'Block created successfully', block });
@@ -47,9 +49,16 @@ exports.getBlockById = async (req, res) => {
 exports.updateBlock = async (req, res) => {
   try {
     const { name, department, programme, description } = req.body;
+    const updateData = {
+      name: name ? name.trim() : undefined,
+      description,
+    };
+    if (department !== undefined) updateData.department = department || null;
+    if (programme !== undefined) updateData.programme = programme || null;
+
     const block = await Block.findByIdAndUpdate(
       req.params.id,
-      { name, department, programme, description },
+      updateData,
       { new: true, runValidators: true }
     );
     if (!block) {

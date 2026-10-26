@@ -10,12 +10,12 @@ const blockSchema = new mongoose.Schema(
     department: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Department',
-      required: true,
+      required: false,
     },
     programme: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Programme',
-      required: true,
+      required: false,
     },
     description: String,
     isActive: {
@@ -26,6 +26,6 @@ const blockSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-blockSchema.index({ name: 1, department: 1, programme: 1 }, { unique: true });
+blockSchema.index({ name: 1 }, { unique: true });
 
 module.exports = mongoose.model('Block', blockSchema);
